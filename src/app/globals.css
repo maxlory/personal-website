@@ -1880,6 +1880,52 @@ a {
   color: var(--foreground-soft);
 }
 
+.ai-workflow-prototype-card {
+  display: grid;
+  gap: 0.95rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(16, 92, 79, 0.16);
+  background:
+    radial-gradient(circle at top right, rgba(203, 244, 236, 0.72), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(241, 248, 246, 0.92));
+  padding: 1rem;
+}
+
+.ai-workflow-prototype-head {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.ai-workflow-prototype-head h4 {
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+}
+
+.ai-workflow-prototype-head a {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #173f39;
+  padding: 0.58rem 0.92rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #f6f1e8;
+  text-decoration: none;
+}
+
+.ai-workflow-prototype-card p {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--foreground-soft);
+}
+
 .ai-workflow-project-evidence-grid {
   display: grid;
   gap: 0.9rem;

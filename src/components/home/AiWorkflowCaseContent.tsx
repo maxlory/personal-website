@@ -143,6 +143,25 @@ export default function AiWorkflowCaseContent({
                 </div>
               ) : null}
 
+              {project.prototype ? (
+                <div className="ai-workflow-prototype-card">
+                  <div className="ai-workflow-prototype-head">
+                    <div>
+                      <p className="section-kicker">Prototype</p>
+                      <h4>{project.prototype.title}</h4>
+                    </div>
+                    <a
+                      href={project.prototype.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.prototype.ctaLabel}
+                    </a>
+                  </div>
+                  <p>{project.prototype.summary}</p>
+                </div>
+              ) : null}
+
               {project.proofPoints.length ? (
                 <div className="ai-workflow-proof-list">
                   <p>Proof points</p>

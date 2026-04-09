@@ -74,6 +74,13 @@ export type AiWorkflowPrdWindow = {
   content: string;
 };
 
+export type AiWorkflowPrototype = {
+  title: string;
+  summary: string;
+  href: string;
+  ctaLabel: string;
+};
+
 export type AiWorkflowProject = {
   title: string;
   label: string;
@@ -82,6 +89,7 @@ export type AiWorkflowProject = {
   processHeading?: string;
   process?: AiWorkflowProcessStep[];
   prdWindow?: AiWorkflowPrdWindow;
+  prototype?: AiWorkflowPrototype;
   evidence?: AiWorkflowEvidenceAsset[];
   proofPoints: string[];
   closingJudgment: string;
@@ -734,6 +742,13 @@ export const workCases: WorkCase[] = [
             "",
             "从产品演进角度看，JobMatch v3 已经从“轻量岗位记录工具”升级为“轻量求职流程管理台”，更接近真实求职过程中的持续使用场景。",
           ].join("\n"),
+        },
+        prototype: {
+          title: "交互原型",
+          summary:
+            "我把岗位创建、字段提取、当前记录、流程节点、日历和结构化对比拆成一组可交互页面，让访客直接看到我如何把 PRD 落成页面结构、信息层级和流程路径。",
+          href: "/jobmatch-prototype/start.html",
+          ctaLabel: "打开完整原型",
         },
         proofPoints: [
           "从岗位存档、JD 提取、字段校对这些真实求职场景出发设计流程。",
