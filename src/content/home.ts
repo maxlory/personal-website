@@ -744,9 +744,9 @@ export const workCases: WorkCase[] = [
           ].join("\n"),
         },
         prototype: {
-          title: "交互原型",
+          title: "Axure 交互原型",
           summary:
-            "我把岗位创建、字段提取、当前记录、流程节点、日历和结构化对比拆成一组可交互页面，让访客直接看到我如何把 PRD 落成页面结构、信息层级和流程路径。",
+            "用 Axure 把 JobMatch 的岗位创建、字段提取、流程节点、日历和结构化对比做成了一套可交互原型，实现把需求文档进一步转成页面结构、信息层级和关键交互流程的能力。",
           href: "/jobmatch-prototype-v20260409a/start?v=20260409a",
           ctaLabel: "打开完整原型",
         },
