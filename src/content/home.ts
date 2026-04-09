@@ -7,6 +7,7 @@ export type NavItem = {
   href: string;
   label: string;
   highlight?: boolean;
+  isDraft?: boolean;
 };
 
 export type HomeEntry = {
@@ -152,8 +153,8 @@ export type WorkCase =
 
 export const siteNav: NavItem[] = [
   { href: "/#work", label: "Work" },
-  { href: "/story", label: "Story" },
-  { href: "/process", label: "Process" },
+  { href: "/story", label: "Story", isDraft: true },
+  { href: "/process", label: "Process", isDraft: true },
   { href: "/#connect", label: "Connect" },
   { href: "/resume.pdf", label: "Resume", highlight: true },
 ];

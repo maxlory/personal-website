@@ -51,10 +51,28 @@ export default function SelectedBuildsNavigator({
     [groups]
   );
   const stickyItems = useMemo<StickyNavItem[]>(() => {
+    const analysisAnchorIds = ["appendix-eastmoney-analysis", "appendix-windclaw-analysis"];
+    const analysisAnchors = anchorItems.filter((item) => analysisAnchorIds.includes(item.id));
     const scoreAnchorIds = ["appendix-eastmoney-score", "appendix-windclaw-score"];
     const scoreAnchors = anchorItems.filter((item) => scoreAnchorIds.includes(item.id));
 
     return anchorItems.reduce<StickyNavItem[]>((items, item) => {
+      if (analysisAnchorIds.includes(item.id)) {
+        if (items.some((entry) => entry.id === "sticky-analysis-comparison") || analysisAnchors.length === 0) {
+          return items;
+        }
+
+        return [
+          ...items,
+          {
+            id: "sticky-analysis-comparison",
+            href: analysisAnchors[0]?.href ?? "#appendix-eastmoney-analysis",
+            label: "深度分析",
+            activeIds: analysisAnchors.map((anchor) => anchor.id),
+          },
+        ];
+      }
+
       if (scoreAnchorIds.includes(item.id)) {
         if (items.some((entry) => entry.id === "sticky-score-comparison") || scoreAnchors.length === 0) {
           return items;
