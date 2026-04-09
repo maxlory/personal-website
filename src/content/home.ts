@@ -747,7 +747,7 @@ export const workCases: WorkCase[] = [
           title: "交互原型",
           summary:
             "我把岗位创建、字段提取、当前记录、流程节点、日历和结构化对比拆成一组可交互页面，让访客直接看到我如何把 PRD 落成页面结构、信息层级和流程路径。",
-          href: "/jobmatch-prototype/start",
+          href: "/jobmatch-prototype/start?v=20260409",
           ctaLabel: "打开完整原型",
         },
         proofPoints: [

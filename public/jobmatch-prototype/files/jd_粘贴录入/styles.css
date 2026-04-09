@@ -561,3 +561,48 @@
   overflow:hidden;
   background-image:url('../../resources/images/transparent.gif');
 }
+
+/* Align the entry tabs with the latest prototype styling. */
+#u1_div {
+  border-color:rgba(121, 121, 121, 0.9);
+  border-radius:7px;
+}
+
+#u2_div {
+  background-color:rgba(215, 231, 244, 1);
+}
+
+#u3_div {
+  background-color:rgba(239, 239, 239, 1);
+}
+
+#u2,
+#u3 {
+  overflow:visible;
+}
+
+#u2::after,
+#u3::after {
+  content:"\\26A1";
+  position:absolute;
+  top:-15px;
+  right:-6px;
+  width:22px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  border:1px solid rgba(198, 165, 39, 0.95);
+  background-color:rgba(255, 212, 59, 1);
+  color:rgba(92, 78, 12, 1);
+  font-size:15px;
+  line-height:1;
+  border-radius:1px;
+  box-shadow:0 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+#u4,
+#u5 {
+  font-size:13px;
+}
