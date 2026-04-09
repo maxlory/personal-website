@@ -1,5 +1,5 @@
 ﻿(function () {
-    if (window.location.protocol === 'file:' || $axure.player.isCloud) return;
+    if (window.location.protocol === 'file:' || $axure.player.isCloud || window.location.hostname) return;
 
     var inited = false;
     $axure.messageCenter.addMessageListener(function (message) {
