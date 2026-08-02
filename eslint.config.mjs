@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static exports include generated Axure runtime files and other vendor assets.
+    "public/**",
   ]),
 ]);
 

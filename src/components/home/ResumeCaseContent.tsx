@@ -98,7 +98,15 @@ export default function ResumeCaseContent({
             src={caseData.pdfEmbed.href}
             title={caseData.pdfEmbed.title}
             className="resume-pdf-frame"
+            loading="lazy"
           />
+          <p className="resume-pdf-fallback">
+            如果浏览器无法预览，请
+            <a href={caseData.pdfEmbed.href} target="_blank" rel="noopener noreferrer">
+              打开完整 PDF
+            </a>
+            。
+          </p>
         </div>
       </section>
     </div>

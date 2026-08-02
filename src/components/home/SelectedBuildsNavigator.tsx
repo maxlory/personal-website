@@ -177,12 +177,18 @@ export default function SelectedBuildsNavigator({
       </section>
 
       <nav className="selected-sticky-nav" aria-label="Selected Builds sections">
-        <div className="selected-sticky-track">
+        <div
+          className="selected-sticky-track"
+          role="region"
+          aria-label="案例章节导航，可横向滚动"
+          tabIndex={0}
+        >
           {stickyItems.map((item) => (
             <Link
               key={item.id}
               href={item.href}
               className={`selected-sticky-link ${item.activeIds.includes(activeSection) ? "is-active" : ""}`}
+              aria-current={item.activeIds.includes(activeSection) ? "location" : undefined}
             >
               {item.label}
             </Link>

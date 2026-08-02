@@ -4,47 +4,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import type { LandingNavItem, LandingWorkCard } from "@/content/home";
+import type { LandingWorkCard } from "@/content/home";
 import { landingPageContent } from "@/content/home";
+import PortfolioSiteNav from "@/components/home/PortfolioSiteNav";
 
 const homeSectionOrder = ["home", "work", "connect"] as const;
 
-function FloatingNav({
-  items,
-  activeSection,
-}: {
-  items: readonly LandingNavItem[];
-  activeSection: string;
-}) {
+function EvidenceDiagram() {
   return (
-    <div className="clone-nav-shell">
-      <nav className="clone-nav" aria-label="Homepage sections">
-        <div className="clone-nav-orb" aria-hidden="true">
-          <span />
-        </div>
-        <div className="clone-nav-links">
-          {items.map((item) => {
-            const isAnchor = item.href.startsWith("/#");
-            const anchorId = isAnchor ? item.href.slice(2) : "";
-            const isActive = anchorId === activeSection;
-            const className = `clone-nav-link ${isActive ? "is-active" : ""} ${item.highlight ? "is-highlight" : ""}`;
+    <div className="portfolio-evidence-board" aria-label="从研究到产品验证的工作方法">
+      <div className="portfolio-board-head">
+        <span>FIELD NOTE / 01</span>
+        <span className="portfolio-board-status">
+          <i aria-hidden="true" /> AVAILABLE FOR CONVERSATIONS
+        </span>
+      </div>
 
-            if (item.href.startsWith("mailto:")) {
-              return (
-                <a key={item.href} href={item.href} className={className}>
-                  {item.label}
-                </a>
-              );
-            }
+      <div className="portfolio-board-map" aria-hidden="true">
+        <div className="portfolio-map-axis" />
+        <span className="portfolio-map-node node-research">研究</span>
+        <span className="portfolio-map-node node-structure">结构</span>
+        <span className="portfolio-map-node node-build">实现</span>
+        <span className="portfolio-map-node node-validate">验证</span>
+        <div className="portfolio-map-line line-one" />
+        <div className="portfolio-map-line line-two" />
+        <div className="portfolio-map-line line-three" />
+      </div>
 
-            return (
-              <Link key={item.href} href={item.href} className={className}>
-                {item.label}
-              </Link>
-            );
-          })}
+      <div className="portfolio-board-metrics">
+        <div>
+          <span>基础</span>
+          <strong>金融训练</strong>
         </div>
-      </nav>
+        <div>
+          <span>方法</span>
+          <strong>研究与拆解</strong>
+        </div>
+        <div>
+          <span>结果</span>
+          <strong>可运行产品</strong>
+        </div>
+      </div>
     </div>
   );
 }
@@ -52,13 +52,14 @@ function FloatingNav({
 function WorkCardCover({ cover }: { cover: LandingWorkCard["cover"] }) {
   if (cover === "dashboard") {
     return (
-      <div className="clone-cover clone-cover-dashboard">
+      <div className="portfolio-cover portfolio-cover-dashboard">
         <Image
           src="/ai-enablement-cover-site.png"
-          alt="AI Enablement cover"
+          alt="项目经历与实践案例封面"
           fill
-          sizes="(max-width: 959px) 100vw, 60vw"
-          className="clone-cover-image"
+          sizes="(max-width: 760px) 100vw, 60vw"
+          className="portfolio-cover-image"
+          priority
         />
       </div>
     );
@@ -66,172 +67,78 @@ function WorkCardCover({ cover }: { cover: LandingWorkCard["cover"] }) {
 
   if (cover === "mailroom") {
     return (
-      <div className="clone-cover clone-cover-mailroom">
+      <div className="portfolio-cover portfolio-cover-paper">
         <Image
           src="/selected-builds-cover.png"
-          alt=""
+          alt="AI 产品评测与判断案例封面"
           fill
-          sizes="(max-width: 959px) 100vw, 42vw"
-          className="clone-cover-image clone-cover-selected-builds-backdrop"
-          aria-hidden="true"
+          sizes="(max-width: 760px) 100vw, 50vw"
+          className="portfolio-cover-image portfolio-cover-contain"
         />
-        <Image
-          src="/selected-builds-cover.png"
-          alt="Selected Builds cover"
-          fill
-          sizes="(max-width: 959px) 100vw, 42vw"
-          className="clone-cover-image clone-cover-selected-builds-image"
-        />
-      </div>
-    );
-  }
-
-  if (cover === "benchmark") {
-    return (
-      <div className="clone-cover clone-cover-benchmark">
-        <div className="clone-cover-dot-field" />
-        <div className="clone-cover-benchmark-badge" />
-        <div className="clone-cover-benchmark-band" />
-        <div className="clone-cover-benchmark-word">benchmark</div>
       </div>
     );
   }
 
   if (cover === "character") {
     return (
-      <div className="clone-cover clone-cover-character">
+      <div className="portfolio-cover portfolio-cover-workflow">
         <Image
           src="/covers/ai-workflow-character.png"
-          alt=""
+          alt="AI 工作流与实践案例封面"
           fill
-          sizes="(max-width: 959px) 100vw, 42vw"
-          className="clone-cover-image clone-cover-character-backdrop"
-          aria-hidden="true"
+          sizes="(max-width: 760px) 100vw, 50vw"
+          className="portfolio-cover-image portfolio-cover-contain"
         />
-        <div className="clone-cover-character-foreground">
-          <Image
-            src="/covers/ai-workflow-character.png"
-            alt="AI Workflow cover"
-            fill
-            sizes="(max-width: 959px) 70vw, 30vw"
-            className="clone-cover-character-image"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  if (cover === "workflow") {
-    return (
-      <div className="clone-cover clone-cover-workflow">
-        <div className="clone-cover-workflow-sheet" />
-        <div className="clone-cover-workflow-sheet second" />
-        <div className="clone-cover-workflow-lane lane-one" />
-        <div className="clone-cover-workflow-lane lane-two" />
-        <div className="clone-cover-workflow-lane lane-three" />
-      </div>
-    );
-  }
-
-  if (cover === "research") {
-    return (
-      <div className="clone-cover clone-cover-research">
-        <div className="clone-cover-research-mark" />
-        <div className="clone-cover-research-title">Frame</div>
-        <div className="clone-cover-research-rule" />
-        <div className="clone-cover-research-rule short" />
-        <div className="clone-cover-research-rule tiny" />
-      </div>
-    );
-  }
-
-  if (cover === "practice") {
-    return (
-      <div className="clone-cover clone-cover-practice">
-        <div className="clone-cover-practice-window" />
-        <div className="clone-cover-practice-window small" />
-        <div className="clone-cover-practice-screen" />
-      </div>
-    );
-  }
-
-  if (cover === "systems") {
-    return (
-      <div className="clone-cover clone-cover-systems">
-        <div className="clone-cover-systems-panel" />
-        <div className="clone-cover-systems-node one" />
-        <div className="clone-cover-systems-node two" />
-        <div className="clone-cover-systems-node three" />
-        <div className="clone-cover-systems-link one" />
-        <div className="clone-cover-systems-link two" />
       </div>
     );
   }
 
   return (
-    <div className="clone-cover clone-cover-ledger">
-      <div className="clone-cover-ledger-board">
-        <div className="clone-cover-ledger-column wide" />
-        <div className="clone-cover-ledger-column" />
-        <div className="clone-cover-ledger-column accent" />
-      </div>
-      <div className="clone-cover-ledger-rule" />
-      <div className="clone-cover-ledger-rule short" />
+    <div className="portfolio-cover portfolio-cover-abstract" aria-hidden="true">
+      <span />
+      <span />
+      <span />
     </div>
   );
 }
 
-function WorkCard({
-  card,
-  reduceMotion,
-}: {
-  card: LandingWorkCard;
-  reduceMotion: boolean;
-}) {
-  const defaultTilt = card.hoverTilt ?? 0;
+function WorkCard({ card, featured }: { card: LandingWorkCard; featured: boolean }) {
+  const reduceMotion = useReducedMotion() ?? false;
 
   return (
-    <motion.div
-      className={`clone-work-card placement-${card.placement}`}
-      initial={reduceMotion ? false : { opacity: 0, y: 42, rotate: defaultTilt }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0, rotate: defaultTilt }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.55, ease: [0.18, 0.9, 0.22, 1] }}
-      whileHover={
-        reduceMotion
-          ? undefined
-          : {
-              y: -6,
-              rotate: 0,
-              transition: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
-            }
-      }
+    <motion.article
+      className={`portfolio-work-card ${featured ? "is-featured" : ""}`}
+      initial={false}
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
     >
-      <Link href={card.href} className="clone-work-link">
-        <div className="clone-work-cover">
+      <Link href={card.href} className="portfolio-work-link">
+        <div className="portfolio-work-visual">
           <WorkCardCover cover={card.cover} />
+          <div className="portfolio-work-signal">
+            <span>{card.index ?? "00"}</span>
+            <strong>{card.signal ?? card.category}</strong>
+          </div>
         </div>
-        <div className="clone-work-meta">
-          <div className="clone-work-title-row">
-            <h3>{card.title}</h3>
+
+        <div className="portfolio-work-copy">
+          <div className="portfolio-work-category">
+            <span>{card.category ?? "CASE STUDY"}</span>
             <span aria-hidden="true">↗</span>
           </div>
-          {card.subtitleAccent ? (
-            <div className="clone-work-subtitle-accent" aria-label={card.subtitle}>
-              <span className="clone-work-subtitle-primary">
-                {card.subtitleAccent.primary}
-              </span>
-              <span className="clone-work-subtitle-secondary">
-                {card.subtitleAccent.secondary}
-              </span>
-            </div>
-          ) : (
-            <p className="clone-work-subtitle">{card.subtitle}</p>
-          )}
-          {card.meta ? <p className="clone-work-note">{card.meta}</p> : null}
+          <h3>{card.title}</h3>
+          <p className="portfolio-work-subtitle">{card.subtitle}</p>
+          {card.summary ? <p className="portfolio-work-summary">{card.summary}</p> : null}
+          {card.meta ? <p className="portfolio-work-meta">{card.meta}</p> : null}
+          {card.tags ? (
+            <ul className="portfolio-work-tags" aria-label="项目标签">
+              {card.tags.map((tag) => <li key={tag}>{tag}</li>)}
+            </ul>
+          ) : null}
+          <span className="portfolio-work-cta">查看完整案例 <i aria-hidden="true">→</i></span>
         </div>
       </Link>
-    </motion.div>
+    </motion.article>
   );
 }
 
@@ -249,128 +156,121 @@ export default function HomepageClient() {
       .map((sectionId) => document.getElementById(sectionId))
       .filter((section): section is HTMLElement => Boolean(section));
 
-    if (sections.length === 0) {
-      return undefined;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-        if (visible?.target.id) {
-          setActiveSection(visible.target.id);
-        }
+        if (visible?.target.id) setActiveSection(visible.target.id);
       },
-      {
-        rootMargin: "-25% 0px -55% 0px",
-        threshold: [0.15, 0.3, 0.6],
-      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.3, 0.6] },
     );
 
     sections.forEach((section) => observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="clone-home">
-      <FloatingNav items={nav} activeSection={activeSection} />
+    <div className="portfolio-home">
+      <a href="#main-content" className="portfolio-skip-link">跳到主要内容</a>
+      <PortfolioSiteNav items={nav} activeSection={activeSection} />
 
-      <section id="home" className="clone-hero section-frame">
+      <main id="main-content">
+      <section id="home" className="portfolio-hero section-frame">
         <motion.div
-          className="clone-hero-meta"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          className="portfolio-hero-copy"
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.18, 0.9, 0.22, 1] }}
+          transition={{ duration: 0.58, ease: [0.18, 0.9, 0.22, 1] }}
         >
-          <p className="clone-kicker">{hero.eyebrow}</p>
-          <p className="clone-hero-note">{hero.note}</p>
+          <div className="portfolio-hero-kicker">
+            <span className="portfolio-kicker-line" aria-hidden="true" />
+            <p>{hero.eyebrow}</p>
+          </div>
+          <h1>
+            {hero.title.map((line, index) => (
+              <span key={line} className={index === 1 ? "is-accent" : undefined}>
+                {line}
+              </span>
+            ))}
+          </h1>
+          <p className="portfolio-hero-summary">{hero.summary}</p>
+          <div className="portfolio-hero-actions">
+            <Link href="/#work" className="portfolio-primary-action">
+              浏览项目 <span aria-hidden="true">↓</span>
+            </Link>
+            <a href="/resume.pdf" className="portfolio-text-action">
+              下载简历 <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <div className="portfolio-hero-signature">
+            <strong>{hero.name}</strong>
+            <span>{hero.note}</span>
+          </div>
         </motion.div>
 
-        <motion.h1
-          className="clone-hero-wordmark"
-          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+        <motion.div
+          className="portfolio-hero-evidence"
+          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, ease: [0.18, 0.9, 0.22, 1], delay: 0.08 }}
+          transition={{ duration: 0.62, ease: [0.18, 0.9, 0.22, 1], delay: 0.08 }}
         >
-          {hero.title}
-        </motion.h1>
+          <EvidenceDiagram />
+        </motion.div>
       </section>
 
-      <section id="work" className="clone-section clone-work-section section-frame">
-        <motion.div
-          className="clone-section-heading centered"
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.55, ease: [0.18, 0.9, 0.22, 1] }}
-        >
-          <p className="clone-script-note">{work.note}</p>
-          <h2 className="clone-block-title">{work.eyebrow}</h2>
-        </motion.div>
+      <section id="work" className="portfolio-work-section section-frame">
+        <div className="portfolio-section-heading">
+          <div>
+            <p className="portfolio-section-index">02 / WORK</p>
+            <h2>{work.eyebrow}</h2>
+          </div>
+          <p>{work.note}</p>
+        </div>
 
-        <div className="clone-work-grid">
-          {visibleWorkCards.map((card) => (
-            <WorkCard key={card.slug} card={card} reduceMotion={reduceMotion} />
+        <div className="portfolio-work-grid">
+          {visibleWorkCards.map((card, index) => (
+            <WorkCard key={card.slug} card={card} featured={index === 0} />
           ))}
         </div>
       </section>
 
-      <section id="connect" className="clone-section clone-connect-section section-frame">
-        <motion.div
-          className="clone-connect-callout"
-          initial={reduceMotion ? false : { opacity: 0, y: 26 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.55, ease: [0.18, 0.9, 0.22, 1] }}
-        >
-          <div>
-            <p className="clone-kicker">{connect.eyebrow}</p>
-            <h2>{connect.title}</h2>
-            <p className="clone-connect-summary">{connect.summary}</p>
-          </div>
-
-          <a href={connect.cta.href} className="clone-connect-button">
-            {connect.cta.label}
+      <section id="connect" className="portfolio-connect-section section-frame">
+        <div className="portfolio-connect-main">
+          <p className="portfolio-section-index">03 / CONNECT</p>
+          <h2>{connect.title}</h2>
+          <p>{connect.summary}</p>
+          <a href={connect.cta.href} className="portfolio-primary-action">
+            {connect.cta.label} <span aria-hidden="true">↗</span>
           </a>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="clone-contact-grid"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.55, ease: [0.18, 0.9, 0.22, 1], delay: 0.06 }}
-        >
+        <div className="portfolio-contact-list">
           {visibleConnectLinks.map((link) => {
-            const isExternal = link.href.startsWith("http") || link.href.startsWith("mailto:");
-
-            if (isExternal) {
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="clone-contact-link"
-                  target={link.href.startsWith("http") ? "_blank" : undefined}
-                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                >
-                  <span>{link.label}</span>
-                  <strong>{link.value}</strong>
-                </a>
-              );
-            }
-
             return (
-              <Link key={link.label} href={link.href} className="clone-contact-link">
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="portfolio-contact-link"
+              >
                 <span>{link.label}</span>
                 <strong>{link.value}</strong>
-              </Link>
+                <i aria-hidden="true">↗</i>
+              </a>
             );
           })}
-        </motion.div>
+        </div>
       </section>
-    </main>
+
+      </main>
+
+      <footer className="portfolio-footer section-frame">
+        <span>SU TIANRUN © 2026</span>
+        <span>Research clearly. Build deliberately.</span>
+      </footer>
+    </div>
   );
 }

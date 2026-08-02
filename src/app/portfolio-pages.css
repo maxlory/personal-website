@@ -1,0 +1,858 @@
+/* Shared portfolio pages: navigation, detail frame and content surfaces */
+
+.portfolio-home {
+  --portfolio-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --foreground: #16231f;
+  --foreground-soft: #52615a;
+  --muted-foreground: #657068;
+  --border-soft: rgba(22, 35, 31, 0.14);
+  --surface: rgba(251, 249, 244, 0.84);
+  --surface-soft: rgba(232, 227, 216, 0.82);
+  --surface-deep: linear-gradient(145deg, #173f39, #0f2d29);
+  --surface-clay: linear-gradient(145deg, #eee4d0, #e6dac1);
+  --shadow-soft: 0 18px 48px rgba(22, 35, 31, 0.07);
+  --accent-gold: #b38a32;
+  --accent-clay: #8b432c;
+}
+
+.portfolio-skip-link {
+  position: fixed;
+  top: 0.65rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  background: #fbf9f4;
+  padding: 0.7rem 1rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #0f2d29;
+  box-shadow: 0 8px 28px rgba(15, 45, 41, 0.22);
+}
+
+.portfolio-skip-link:focus {
+  transform: translateY(0);
+}
+
+.portfolio-menu-toggle,
+.portfolio-mobile-menu {
+  display: none;
+}
+
+.portfolio-detail-page {
+  background:
+    linear-gradient(rgba(23, 63, 57, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 63, 57, 0.028) 1px, transparent 1px),
+    #f5f0e6;
+  background-size: 32px 32px;
+}
+
+.portfolio-detail-hero {
+  padding-block: clamp(3.5rem, 8vw, 7rem) clamp(4rem, 8vw, 6.5rem);
+}
+
+.portfolio-detail-crumb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--portfolio-line);
+  padding-bottom: 0.8rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #657068;
+}
+
+.portfolio-detail-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.58fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+.portfolio-detail-hero-copy h1 {
+  max-width: 13ch;
+  margin-top: 0.8rem;
+  font-family: var(--font-display-serif), "Songti SC", Georgia, serif;
+  font-size: clamp(3.3rem, 6.6vw, 7rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+  color: var(--portfolio-green);
+  text-wrap: balance;
+}
+
+.portfolio-detail-subtitle {
+  margin-top: 1.6rem;
+  font-size: clamp(1.02rem, 1.4vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.6;
+  color: #334640;
+}
+
+.portfolio-detail-note {
+  max-width: 46rem;
+  margin-top: 0.75rem;
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: #52615a;
+}
+
+.portfolio-detail-signal {
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: var(--portfolio-green-deep);
+  padding: 1.2rem;
+  color: #f9f5eb;
+  box-shadow: 0 22px 54px rgba(15, 45, 41, 0.18);
+}
+
+.portfolio-detail-signal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 0.85rem;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.portfolio-detail-signal ol {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-detail-signal li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: center;
+  min-height: 3.7rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-detail-signal li span {
+  color: #d5ad52;
+  font-family: var(--font-display-serif), Georgia, serif;
+}
+
+.portfolio-detail-signal li strong {
+  font-size: 0.9rem;
+  font-weight: 560;
+}
+
+.portfolio-detail-signal > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 3rem;
+  padding-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.portfolio-detail-content {
+  padding-bottom: clamp(5rem, 9vw, 8rem);
+}
+
+.portfolio-detail-content .section-kicker {
+  color: #657068;
+}
+
+.portfolio-detail-content .detail-panel-paper,
+.portfolio-detail-content .detail-stat,
+.portfolio-detail-content .resume-project-list {
+  border-color: var(--portfolio-line);
+  background: rgba(251, 249, 244, 0.84);
+  box-shadow: var(--shadow-soft);
+}
+
+.portfolio-detail-content .detail-panel-deep {
+  background: var(--surface-deep);
+  box-shadow: 0 22px 50px rgba(15, 45, 41, 0.16);
+}
+
+.portfolio-detail-content .detail-panel-deep .section-kicker {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.portfolio-detail-content .detail-panel-deep .detail-body {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.portfolio-detail-content .detail-panel-clay {
+  border-color: rgba(179, 138, 50, 0.18);
+  background: var(--surface-clay);
+}
+
+.portfolio-detail-content .detail-panel,
+.portfolio-detail-content .detail-stat,
+.portfolio-detail-content .resume-project-list,
+.portfolio-detail-content .selected-index-shell {
+  border-radius: 1rem;
+}
+
+.portfolio-detail-content .detail-panel-title,
+.portfolio-detail-content .selected-index-title,
+.portfolio-detail-content .ai-workflow-project-head h3 {
+  color: var(--portfolio-ink);
+}
+
+.portfolio-detail-content .detail-body,
+.portfolio-detail-content .selected-section-note,
+.portfolio-detail-content .selected-dossier-summary,
+.portfolio-detail-content .ai-workflow-project-summary,
+.portfolio-detail-content .ai-workflow-process-item p,
+.portfolio-detail-content .ai-workflow-evidence-copy p,
+.portfolio-detail-content .resume-project-body,
+.portfolio-detail-content .resume-project-detail,
+.portfolio-detail-content .resume-overview-summary,
+.portfolio-detail-content .resume-overview-direction,
+.portfolio-detail-content .resume-pdf-note {
+  color: #52615a;
+}
+
+.portfolio-detail-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.5fr);
+  gap: 3rem;
+  align-items: end;
+  border-top: 1px solid var(--portfolio-line);
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.portfolio-detail-contact h2 {
+  max-width: 13ch;
+  margin-top: 0.75rem;
+  font-family: var(--font-display-serif), "Songti SC", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  color: var(--portfolio-green);
+}
+
+.portfolio-detail-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  align-items: center;
+}
+
+.portfolio-content-heading {
+  max-width: 50rem;
+}
+
+.portfolio-content-heading h2,
+.portfolio-story-focus h2,
+.portfolio-process-principle h2 {
+  margin-top: 0.7rem;
+  font-family: var(--font-display-serif), "Songti SC", Georgia, serif;
+  font-size: clamp(2.4rem, 4.8vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--portfolio-green);
+  text-wrap: balance;
+}
+
+.portfolio-story-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(19rem, 0.55fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.portfolio-story-list {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--portfolio-line);
+}
+
+.portfolio-story-item {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1.2rem;
+  border-bottom: 1px solid var(--portfolio-line);
+  padding-block: 1.6rem;
+}
+
+.portfolio-story-index {
+  padding-top: 0.2rem;
+  font-family: var(--font-display-serif), Georgia, serif;
+  color: #82601f;
+}
+
+.portfolio-story-item h3 {
+  font-size: 1.15rem;
+  font-weight: 650;
+  color: var(--portfolio-ink);
+}
+
+.portfolio-story-item p {
+  margin-top: 0.55rem;
+  font-size: 0.96rem;
+  line-height: 1.85;
+  color: #52615a;
+}
+
+.portfolio-story-focus {
+  position: sticky;
+  top: 7rem;
+  border-radius: 1rem;
+  background: var(--portfolio-green-deep);
+  padding: 1.4rem;
+  color: #f9f5eb;
+}
+
+.portfolio-story-focus .portfolio-section-index {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.portfolio-story-focus h2 {
+  font-size: clamp(2rem, 3.3vw, 3.3rem);
+  color: #f9f5eb;
+}
+
+.portfolio-story-focus ul {
+  display: grid;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-story-focus li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: center;
+  min-height: 3.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.portfolio-story-focus li span {
+  color: #d5ad52;
+  font-size: 0.75rem;
+}
+
+.portfolio-story-focus li strong {
+  font-size: 0.9rem;
+  font-weight: 560;
+}
+
+.portfolio-story-focus > a {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 0.35rem;
+  font-size: 0.84rem;
+  color: #fff;
+}
+
+.portfolio-process-layout {
+  display: grid;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.portfolio-process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-process-step {
+  min-height: 23rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 1rem;
+  background: rgba(251, 249, 244, 0.82);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.portfolio-process-step:nth-child(2) {
+  background: var(--portfolio-green-deep);
+  color: #fff;
+  transform: translateY(1.5rem);
+}
+
+.portfolio-process-step-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--portfolio-line);
+  padding-bottom: 0.8rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  color: #657068;
+}
+
+.portfolio-process-step:nth-child(2) .portfolio-process-step-head {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.portfolio-process-step h3 {
+  margin-top: 2.2rem;
+  font-family: var(--font-display-serif), "Songti SC", Georgia, serif;
+  font-size: clamp(2rem, 3.6vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--portfolio-green);
+}
+
+.portfolio-process-step:nth-child(2) h3 {
+  color: #f9f5eb;
+}
+
+.portfolio-process-step p {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: 0.94rem;
+  line-height: 1.8;
+  color: #52615a;
+}
+
+.portfolio-process-step:nth-child(2) p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.portfolio-process-principle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.58fr);
+  gap: 4rem;
+  align-items: end;
+  border-top: 1px solid var(--portfolio-line);
+  border-bottom: 1px solid var(--portfolio-line);
+  padding-block: 3rem;
+}
+
+.portfolio-process-principle > div:last-child p {
+  font-size: 0.98rem;
+  line-height: 1.85;
+  color: #52615a;
+}
+
+.portfolio-process-principle a {
+  display: inline-flex;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  border-bottom: 1px solid rgba(23, 63, 57, 0.25);
+  padding-bottom: 0.35rem;
+  font-size: 0.84rem;
+  font-weight: 650;
+  color: var(--portfolio-green);
+}
+
+/* Case-study refinements */
+.selected-disclosure-card {
+  border-left: 4px solid var(--portfolio-gold) !important;
+}
+
+.selected-disclosure-card .detail-panel-title {
+  margin-top: 0.5rem;
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+}
+
+.selected-index-shell {
+  border-radius: 1rem;
+  background: rgba(251, 249, 244, 0.86);
+}
+
+.selected-index-group,
+.selected-index-link,
+.selected-insight-card,
+.selected-method-card,
+.selected-dossier-section,
+.selected-dossier-list,
+.selected-doc,
+.selected-download-card,
+.ai-workflow-process-card,
+.ai-workflow-prototype-card,
+.ai-workflow-project-evidence-card,
+.resume-contact-item {
+  border-color: var(--portfolio-line);
+  border-radius: 0.85rem;
+}
+
+.selected-sticky-nav {
+  top: 5.7rem;
+}
+
+.selected-sticky-track {
+  border-radius: 0.9rem;
+  border-color: var(--portfolio-line);
+  background:
+    linear-gradient(90deg, #fbf9f4 0, rgba(251, 249, 244, 0) 1.5rem) left,
+    linear-gradient(-90deg, #fbf9f4 0, rgba(251, 249, 244, 0) 1.5rem) right,
+    rgba(251, 249, 244, 0.94);
+  background-attachment: local, local, scroll;
+  background-repeat: no-repeat;
+  background-size: 2.5rem 100%, 2.5rem 100%, 100% 100%;
+}
+
+.selected-sticky-link {
+  min-height: 2.9rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.65rem;
+}
+
+.selected-doc-summary,
+.selected-download-link,
+.ai-workflow-prd-window-head a,
+.ai-workflow-prototype-head a,
+.resume-download-button {
+  min-height: 2.75rem;
+}
+
+.selected-doc-table-wrap:focus-visible,
+.selected-sticky-track:focus-visible,
+.portfolio-home button:focus-visible,
+.portfolio-home summary:focus-visible,
+.portfolio-home [tabindex]:focus-visible {
+  outline: 3px solid rgba(179, 138, 50, 0.5);
+  outline-offset: 3px;
+}
+
+.selected-doc-local-link {
+  border-radius: 0.35rem;
+  background: rgba(23, 63, 57, 0.06);
+  padding: 0.15rem 0.4rem;
+  font-size: 0.82rem;
+  color: #52615a;
+}
+
+.ai-workflow-process-card {
+  border-color: rgba(23, 63, 57, 0.14);
+  background: rgba(245, 240, 230, 0.72);
+}
+
+.ai-workflow-project-head > span {
+  background: #e4e7dd;
+}
+
+.ai-workflow-process-item > span {
+  color: #82601f;
+}
+
+.ai-workflow-prd-window {
+  border-color: rgba(23, 63, 57, 0.18);
+  background: rgba(245, 240, 230, 0.74);
+}
+
+.ai-workflow-project-evidence-media,
+.ai-workflow-evidence-media {
+  color: #ffffff;
+}
+
+.ai-workflow-prd-window-head a {
+  display: inline-flex;
+  align-items: center;
+  border-color: rgba(23, 63, 57, 0.3);
+  color: var(--portfolio-green);
+}
+
+.ai-workflow-prototype-card {
+  background: rgba(231, 239, 234, 0.72);
+}
+
+.ai-workflow-prototype-card .section-kicker {
+  color: #52615a;
+}
+
+.ai-workflow-ending-card,
+.selected-ending-card {
+  border-left: 4px solid var(--portfolio-gold) !important;
+}
+
+.resume-download-button {
+  background: var(--portfolio-green);
+}
+
+.resume-pdf-fallback {
+  display: none;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #52615a;
+}
+
+.resume-pdf-fallback a {
+  margin-inline: 0.25rem;
+  color: var(--portfolio-green);
+  text-decoration: underline;
+}
+
+.portfolio-primary-action,
+.portfolio-menu-toggle,
+.resume-download-button,
+.selected-download-link,
+.ai-workflow-prototype-head a {
+  transition: transform 160ms var(--portfolio-ease-out), background-color 180ms ease, color 180ms ease;
+}
+
+.portfolio-primary-action:active,
+.portfolio-menu-toggle:active,
+.resume-download-button:active,
+.selected-download-link:active,
+.ai-workflow-prototype-head a:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 900px) {
+  .portfolio-detail-hero-grid,
+  .portfolio-story-layout,
+  .portfolio-process-principle,
+  .portfolio-detail-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-detail-signal {
+    max-width: 38rem;
+  }
+
+  .portfolio-story-focus {
+    position: static;
+  }
+
+  .portfolio-process-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-process-step,
+  .portfolio-process-step:nth-child(2) {
+    min-height: 18rem;
+    transform: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .portfolio-nav-shell {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .portfolio-nav-links-desktop {
+    display: none;
+  }
+
+  .portfolio-menu-toggle {
+    position: relative;
+    z-index: 3;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-content: center;
+    gap: 0.36rem;
+    margin-left: auto;
+    border: 1px solid rgba(23, 63, 57, 0.16);
+    border-radius: 50%;
+    background: rgba(251, 249, 244, 0.72);
+  }
+
+  .portfolio-menu-toggle span {
+    width: 1.15rem;
+    height: 1px;
+    background: var(--portfolio-green);
+    transition: transform 180ms ease;
+  }
+
+  .portfolio-menu-toggle.is-open span:first-child {
+    transform: translateY(0.22rem) rotate(45deg);
+  }
+
+  .portfolio-menu-toggle.is-open span:last-child {
+    transform: translateY(-0.22rem) rotate(-45deg);
+  }
+
+  .portfolio-mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: none;
+    min-height: calc(100svh - 4.25rem - env(safe-area-inset-top));
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      var(--portfolio-green-deep);
+    background-size: 24px 24px;
+    padding: 1.25rem max(0.75rem, env(safe-area-inset-right)) max(1.4rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+    color: #fff;
+  }
+
+  .portfolio-mobile-menu.is-open {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .portfolio-mobile-menu-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    padding-bottom: 0.9rem;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    color: rgba(255, 255, 255, 0.54);
+  }
+
+  .portfolio-mobile-links {
+    display: grid;
+    align-content: center;
+  }
+
+  .portfolio-mobile-menu .portfolio-nav-link.is-mobile {
+    display: flex;
+    justify-content: space-between;
+    min-height: 3.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+    padding: 0.65rem 0;
+    font-family: var(--font-display-serif), Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    color: #f9f5eb;
+  }
+
+  .portfolio-mobile-menu .portfolio-nav-link.is-mobile::after {
+    display: none;
+  }
+
+  .portfolio-mobile-menu .portfolio-nav-link.is-mobile.is-active {
+    color: #d5ad52;
+  }
+
+  .portfolio-mobile-menu .portfolio-nav-link.is-mobile.is-highlight {
+    margin: 1rem 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+    padding-inline: 1rem;
+    font-family: var(--font-body-sans), sans-serif;
+    font-size: 0.9rem;
+  }
+
+  .portfolio-mobile-menu > p {
+    padding-top: 1rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  .portfolio-detail-hero {
+    padding-block: 2.6rem 4rem;
+  }
+
+  .portfolio-detail-crumb span:last-child {
+    display: none;
+  }
+
+  .portfolio-detail-hero-grid {
+    gap: 2.5rem;
+    padding-top: 2.4rem;
+  }
+
+  .portfolio-detail-hero-copy h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .portfolio-content-heading h2,
+  .portfolio-process-principle h2 {
+    font-size: clamp(2.3rem, 12vw, 3.8rem);
+  }
+
+  .portfolio-story-item {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .portfolio-detail-contact {
+    gap: 2rem;
+  }
+
+  .portfolio-detail-contact-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .portfolio-detail-contact-actions .portfolio-primary-action,
+  .portfolio-detail-contact-actions .portfolio-text-action {
+    width: 100%;
+  }
+
+  .portfolio-detail-contact-actions .portfolio-text-action {
+    justify-content: space-between;
+  }
+
+  .portfolio-detail-content .detail-panel,
+  .portfolio-detail-content .detail-stat,
+  .portfolio-detail-content .selected-index-shell {
+    padding-inline: 1rem;
+  }
+
+  .selected-sticky-nav {
+    top: calc(4.25rem + env(safe-area-inset-top));
+    margin-inline: -0.2rem;
+  }
+
+  .selected-sticky-track {
+    border-radius: 0.8rem;
+  }
+
+  .selected-doc-summary {
+    min-height: 3.2rem;
+  }
+
+  .ai-workflow-prd-window-head,
+  .ai-workflow-prototype-head {
+    flex-direction: column;
+  }
+
+  .ai-workflow-prd-window-head a,
+  .ai-workflow-prototype-head a,
+  .resume-download-button,
+  .selected-download-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .resume-pdf-frame {
+    display: none;
+  }
+
+  .resume-pdf-fallback {
+    display: block;
+  }
+}
+
+@media (hover: none) {
+  .portfolio-home a,
+  .portfolio-home button,
+  .portfolio-home summary {
+    touch-action: manipulation;
+  }
+
+  .portfolio-primary-action:hover,
+  .resume-download-button:hover,
+  .selected-download-link:hover {
+    transform: none;
+  }
+}

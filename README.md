@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 苏天润个人网站
 
-## Getting Started
+一个以研究、产品判断与可验证实践为主线的个人作品集。网站使用统一的暖纸色、深绿色与金色视觉系统，包含首页、个人经历、工作方法和 3 个完整案例页。
 
-First, run the development server:
+## 页面
+
+- `/`：个人定位、精选案例与联系方式
+- `/story`：金融训练到 AI 产品实践的经历路径
+- `/process`：定义问题、建立结构、验证判断的方法
+- `/work/profile`：个人经历、项目实践与简历
+- `/work/selected-builds`：AI 产品评测、评分方法与原始附录
+- `/work/ai-workflow`：JobMatch 与 Lets Go RSS 工作流证据
+
+旧地址 `/work/futures-ai` 和 `/work/ai-benchmark` 会自动跳转到对应的新页面。
+
+## 本地运行
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+浏览器访问 `http://localhost:3000`。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 验证与构建
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+项目使用 Next.js 静态导出，构建结果写入 `out/`，可部署到支持静态文件的网站托管服务。
 
-To learn more about Next.js, take a look at the following resources:
+## 技术栈
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- React Markdown
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 设计原则
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 证据先于包装，案例内容区分目标、过程与实际结果。
+- 首页建立定位，详情页统一采用“问题—方法—证据—判断”阅读结构。
+- 支持键盘导航、跳过链接、可见焦点、减少动态效果和移动端安全区。
+- 页面元数据、分享图、旧链接兼容与静态导出均已配置。

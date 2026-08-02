@@ -35,7 +35,7 @@ function MarkdownBlock({
           </div>
           <h4 className="selected-doc-title">{doc.title}</h4>
         </div>
-        <span className="selected-doc-toggle">展开原文</span>
+        <span className="selected-doc-toggle">原文详情</span>
       </summary>
 
       <div className="selected-doc-markdown">
@@ -48,7 +48,11 @@ function MarkdownBlock({
               }
 
               if (href.startsWith("/Users/")) {
-                return <code className="selected-doc-local-link">{children}</code>;
+                return (
+                  <span className="selected-doc-local-link">
+                    本地原始报告（路径已隐藏）
+                  </span>
+                );
               }
 
               const external = href.startsWith("http://") || href.startsWith("https://");
@@ -72,6 +76,8 @@ function MarkdownBlock({
                 <img
                   src={src}
                   alt={alt ?? ""}
+                  width={1600}
+                  height={900}
                   loading="lazy"
                   className="selected-doc-image"
                 />
@@ -79,10 +85,24 @@ function MarkdownBlock({
             },
             table({ children }) {
               return (
-                <div className="selected-doc-table-wrap">
+                <div
+                  className="selected-doc-table-wrap"
+                  role="region"
+                  aria-label={`${doc.title} 表格，可横向滚动`}
+                  tabIndex={0}
+                >
                   <table>{children}</table>
                 </div>
               );
+            },
+            h1({ children }) {
+              return <h4>{children}</h4>;
+            },
+            h2({ children }) {
+              return <h5>{children}</h5>;
+            },
+            h3({ children }) {
+              return <h6>{children}</h6>;
             },
           }}
         >
@@ -207,6 +227,14 @@ export default async function SelectedBuildsCaseContent({
           </div>
         ))}
       </div>
+
+      <aside className="detail-panel detail-panel-paper selected-disclosure-card">
+        <p className="section-kicker">Disclosure</p>
+        <h2 className="detail-panel-title">结论如何得出</h2>
+        <p className="detail-body">
+          两款产品使用同一组 28 个提示词，在相同约束下完成测试，再按内容质量、工具使用、过程自主性和使用体验四个维度人工复核。页面不把目标值冒充实际结果；逐题评分与原始材料保留在附录中。
+        </p>
+      </aside>
 
       <section
         id="comparison-overview"

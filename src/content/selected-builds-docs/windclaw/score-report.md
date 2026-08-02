@@ -1,6 +1,6 @@
 # WindClaw 28题体验评分结果
 
-评判对象：[`/Users/sutianrun/Desktop/WindClaw产品使用体验.md`](/Users/sutianrun/Desktop/WindClaw产品使用体验.md)
+评判对象：WindClaw 产品使用体验报告（本地原始路径已隐藏）
 
 评判标准：金融分析型产品体验评判标准 v1  
 评判口径：`外部事实抽核 + 文档内容评估`  
@@ -93,4 +93,3 @@ WindClaw 这 28 题的整体表现属于`中等偏上，但分化明显`：
 - [中国证监会：关于深化上市公司并购重组市场改革的意见](https://www.csrc.gov.cn/csrc/c100028/c7520105/content.shtml)
 - [上交所：关于深化科创板改革服务科技创新和新质生产力发展的八条措施](https://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20240619_10757325.shtml)
 - [腾讯2025年度业绩公告](https://static.www.tencent.com/uploads/2026/03/18/559e5d480a4411165e6c7367d61fefbd.pdf)
-

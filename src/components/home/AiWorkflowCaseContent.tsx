@@ -49,7 +49,7 @@ export default function AiWorkflowCaseContent({
         </div>
         <div className="ai-workflow-overview-note">
           <span>Core signal</span>
-          <strong>from vibe coding to working systems</strong>
+          <strong>from idea to testable product evidence</strong>
         </div>
       </section>
 
@@ -210,6 +210,11 @@ export default function AiWorkflowCaseContent({
           ))}
         </div>
       </section>
+
+      <article className="detail-panel detail-panel-paper ai-workflow-ending-card">
+        <p className="section-kicker">What these cases prove</p>
+        <p className="detail-body">{caseData.callout}</p>
+      </article>
 
     </div>
   );

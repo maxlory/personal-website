@@ -10,27 +10,6 @@ export type NavItem = {
   isDraft?: boolean;
 };
 
-export type HomeEntry = {
-  slug: string;
-  section: "work" | "story" | "process";
-  href: string;
-  title: string;
-  subtitle: string;
-  coverStyle:
-    | "selected-builds"
-    | "futures-ai"
-    | "ai-benchmark"
-    | "ai-workflow-character"
-    | "story"
-    | "process";
-  placement:
-    | "left-feature"
-    | "top-wide"
-    | "right-feature"
-    | "bottom-left"
-    | "bottom-center";
-};
-
 export type DetailSection = {
   title: string;
   body: string;
@@ -160,97 +139,18 @@ export type WorkCase =
   | SelectedBuildsWorkCase;
 
 export const siteNav: NavItem[] = [
-  { href: "/#work", label: "Work" },
-  { href: "/story", label: "Story", isDraft: true },
-  { href: "/process", label: "Process", isDraft: true },
-  { href: "/#connect", label: "Connect" },
-  { href: "/resume.pdf", label: "Resume", highlight: true },
+  { href: "/#home", label: "首页" },
+  { href: "/#work", label: "项目" },
+  { href: "/story", label: "关于" },
+  { href: "/process", label: "方法" },
+  { href: "/#connect", label: "联系" },
+  { href: "/resume.pdf", label: "查看简历", highlight: true },
 ];
-
-export const homeContent = {
-  hero: {
-    eyebrow: "AI x Finance x Product",
-    title: ["Su", "Tianrun"],
-    summary: "做研究，也把它做出来。",
-    intro:
-      "首页只放入口。具体内容，点进去再看。",
-  },
-  entries: [
-    {
-      slug: "selected-builds",
-      section: "work",
-      href: "/work/selected-builds",
-      title: "AI 产品评测与判断",
-      subtitle: "AI Product Review & Judgment",
-      coverStyle: "selected-builds",
-      placement: "left-feature",
-    },
-    {
-      slug: "futures-ai",
-      section: "work",
-      href: "/work/futures-ai",
-      title: "AI Enablement",
-      subtitle: "Futures teams, workflow, rollout",
-      coverStyle: "futures-ai",
-      placement: "top-wide",
-    },
-    {
-      slug: "ai-benchmark",
-      section: "work",
-      href: "/work/ai-benchmark",
-      title: "AI 工作流与实践",
-      subtitle: "AI Workflow & Practice",
-      coverStyle: "ai-workflow-character",
-      placement: "right-feature",
-    },
-    {
-      slug: "story",
-      section: "story",
-      href: "/story",
-      title: "Story",
-      subtitle: "Education, practice, arc",
-      coverStyle: "story",
-      placement: "bottom-left",
-    },
-    {
-      slug: "process",
-      section: "process",
-      href: "/process",
-      title: "Process",
-      subtitle: "How I think and build",
-      coverStyle: "process",
-      placement: "bottom-center",
-    },
-  ] satisfies HomeEntry[],
-  connect: {
-    eyebrow: "Connect",
-    title: "Open to thoughtful conversations.",
-    summary: "如果你想继续聊 AI、金融、产品实践，欢迎直接联系我。",
-    links: [
-      {
-        label: "Email",
-        value: "sutianrun@ucass.com",
-        href: "mailto:sutianrun@ucass.com",
-      },
-      {
-        label: "GitHub",
-        value: "@maxlory",
-        href: "https://github.com/maxlory",
-      },
-      {
-        label: "Resume",
-        value: "Download PDF",
-        href: "/resume.pdf",
-        download: true,
-      },
-    ],
-  },
-} as const;
 
 export const workCases: WorkCase[] = [
   {
     kind: "resume",
-    slug: "futures-ai",
+    slug: "profile",
     title: "苏天润",
     subtitle: "AI 产品、金融场景与工作流实践",
     eyebrow: "Resume",
@@ -330,29 +230,29 @@ export const workCases: WorkCase[] = [
   },
   {
     kind: "ai-workflow",
-    slug: "ai-benchmark",
+    slug: "ai-workflow",
     title: "AI Workflow",
-    subtitle: "全栈工作流和prompt调优",
+    subtitle: "产品构建工作流和 Prompt 调优",
     eyebrow: "Work",
     heroNote: "JobMatch / Lets Go RSS",
     overview:
-      "这里整理了两个 AI Workflow 项目：JobMatch 侧重全栈搭建，RSS 工作流侧重信息处理、prompt 调优和交付。",
+      "这里整理了两个 AI Workflow 项目：JobMatch 侧重产品结构、交互原型与工程协作，RSS 工作流侧重信息处理、Prompt 调优和交付。",
     stats: [
       { label: "Projects", value: "2" },
-      { label: "JobMatch focus", value: "Full-stack" },
+      { label: "JobMatch focus", value: "Product flow" },
       { label: "RSS focus", value: "Prompt tuning" },
-      { label: "Evidence", value: "5 assets" },
+      { label: "Evidence", value: "6 assets" },
     ],
     projects: [
       {
         title: "JobMatch",
         label: "Case 01",
-        focus: "Full-stack workflow",
+        focus: "Product & build workflow",
         summary:
-          "JobMatch 是一个全栈岗位管理项目：围绕 PRD、数据结构、JD 提取、前端确认和 GitHub 开发规范，展示把需求推进成完整产品流程的方式。",
+          "JobMatch 是一个岗位管理产品实践：围绕 PRD、数据结构、JD 提取、前端确认、交互原型和 GitHub 开发规范，展示把需求推进成可测试产品流程的方式。",
         process: [
           {
-            title: "搭建全栈项目底座",
+            title: "搭建产品项目底座",
             body:
               "从 GitHub 获取主体框架，先确认前端、后端、存储、部署等完整技术栈，并把它作为项目模板；同时参考 MCP 框架，为后续功能接入预留结构。最终结合当前需求范围，没有将 MCP 功能纳入本次具体构建。",
           },
@@ -755,7 +655,8 @@ export const workCases: WorkCase[] = [
           "演示视频展示从输入岗位信息到提取字段、确认校对的完整路径。",
           "GitHub README 体现本地安全初始化、功能分支、检查、checkpoint/tag 等工程纪律。",
         ],
-        closingJudgment: "",
+        closingJudgment:
+          "这项实践证明我能把需求边界、产品流程、交互原型和工程协作规范组织成一条可执行、可验证的产品构建链路。",
       },
       {
         title: "Lets Go RSS",
@@ -816,14 +717,15 @@ export const workCases: WorkCase[] = [
           },
         ],
         proofPoints: [],
-        closingJudgment: "",
+        closingJudgment:
+          "这项实践证明我能把 Prompt 调优放进固定物料、版本对比和真实交付组成的可复盘实验流程。",
       },
     ],
     evidence: [
       {
         kind: "video",
         title: "JobMatch 产品演示",
-        label: "Full-stack flow",
+        label: "Product flow",
         caption:
           "从岗位文本输入，到 AI 提取字段，再进入人工确认与校对界面。",
         src: "/ai-workflow/jobmatch-demo.mp4",
@@ -857,7 +759,7 @@ export const workCases: WorkCase[] = [
       },
     ],
     callout:
-      "我不是只会 vibe coding 出一个界面，而是能把 AI 想法推进成可运行、可验证、可复盘的工作流。",
+      "我能把 AI 想法推进成有明确边界、有交互证据、有工程记录、也能复盘改进的工作流。",
   },
   selectedBuildsCase,
 ];
@@ -951,33 +853,48 @@ export type LandingWorkCard = {
     | "right-small"
     | "center-wide";
   hoverTilt?: number;
+  index?: string;
+  category?: string;
+  summary?: string;
+  signal?: string;
+  tags?: readonly string[];
 };
 
 export const landingPageContent = {
   nav: [
-    { href: "/#home", label: "Home" },
-    { href: "/#work", label: "Work" },
-    { href: "/#connect", label: "Connect" },
-    { href: "mailto:sutianrun@ucass.com", label: "Start project", highlight: true },
+    { href: "/#home", label: "首页" },
+    { href: "/#work", label: "项目" },
+    { href: "/story", label: "关于" },
+    { href: "/process", label: "方法" },
+    { href: "/#connect", label: "联系" },
+    { href: "/resume.pdf", label: "查看简历", highlight: true },
   ] satisfies LandingNavItem[],
   hero: {
-    eyebrow: "AI x Finance x Product",
-    note:
-      "这些既是我来时的路，也是我奔赴的远方。\nAfoot and light-hearted I take to the open road",
-    title: "SU TIANRUN",
+    eyebrow: "AI PRODUCT · FINANCE · RESEARCH",
+    name: "苏天润 / SU TIANRUN",
+    title: ["研究复杂问题，", "把判断做成产品。"],
+    summary:
+      "AI 产品经理方向。以金融训练为底，用研究厘清问题，用原型、工作流和真实测试验证判断。",
+    note: "Currently pursuing a Master of Finance · Beijing, China",
   },
   work: {
-    eyebrow: "My best work",
-    note: "from research 'til build",
+    eyebrow: "Selected Evidence",
+    note: "项目不是陈列，是判断如何形成的证据。",
     cards: [
       {
-        slug: "futures-ai",
-        href: "/work/futures-ai",
-        title: "项目经历与实践",
-        subtitle: "Projects & Practice",
+        slug: "profile",
+        href: "/work/profile",
+        title: "个人经历与项目实践",
+        subtitle: "Profile & Practice",
         cover: "dashboard",
         placement: "top-wide",
         hoverTilt: -1.15,
+        index: "01",
+        category: "PROFILE & PRACTICE",
+        summary:
+          "把教育背景、金融训练与五项真实实践放进同一条能力链路，说明我如何从研究走向 AI 产品与工作流落地。",
+        signal: "05 PRACTICE NOTES",
+        tags: ["个人经历", "产品实践", "完整简历"],
       },
       {
         slug: "selected-builds",
@@ -988,19 +905,31 @@ export const landingPageContent = {
         cover: "mailroom",
         placement: "left-large",
         hoverTilt: 1.1,
+        index: "02",
+        category: "PRODUCT REVIEW",
+        summary:
+          "围绕真实投研任务设计近 30 道评测题，对 WindClaw 与东方财富 Skills 进行结构化比较并形成产品判断。",
+        signal: "30 TEST PROMPTS",
+        tags: ["竞品分析", "评测设计", "产品判断"],
       },
       {
-        slug: "ai-benchmark",
-        href: "/work/ai-benchmark",
+        slug: "ai-workflow",
+        href: "/work/ai-workflow",
         title: "AI 工作流与实践",
         subtitle: "AI Workflow & Practice",
         cover: "character",
         placement: "right-medium",
         hoverTilt: -1,
+        index: "03",
+        category: "AI WORKFLOW",
+        summary:
+          "通过 RSS 情报追踪和 JobMatch 产品原型，验证 AI 如何进入信息处理与个人决策工作流。",
+        signal: "02 SHIPPED FLOWS",
+        tags: ["自动化", "Prompt", "原型设计"],
       },
       {
         slug: "workflow-systems",
-        href: "/work/futures-ai",
+        href: "/work/profile",
         title: "Workflow Systems",
         subtitle: "Signals, summaries, delivery",
         meta: "grounded in the futures case",
@@ -1010,7 +939,7 @@ export const landingPageContent = {
       },
       {
         slug: "research-frames",
-        href: "/work/ai-benchmark",
+        href: "/work/ai-workflow",
         title: "Prompt Frames",
         subtitle: "Versions, tests, confidence",
         cover: "research",
