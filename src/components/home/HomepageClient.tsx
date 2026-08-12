@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import type { LandingNavItem } from "@/content/home";
 import { landingPageContent } from "@/content/home";
+import type { TokscaleUsageData } from "@/lib/tokscale/data";
 import { ProjectIndex } from "./ProjectIndex";
+import { TokscaleUsageSection } from "./tokscale/TokscaleUsageSection";
 
 function HomeNav({ items }: { items: readonly LandingNavItem[] }) {
   return (
@@ -31,7 +33,11 @@ function HomeNav({ items }: { items: readonly LandingNavItem[] }) {
   );
 }
 
-export default function HomepageClient() {
+export default function HomepageClient({
+  tokscaleSummary,
+}: {
+  tokscaleSummary: TokscaleUsageData | null;
+}) {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
   const { hero, nav, work, connect } = landingPageContent;
   const visibleWorkCards = work.cards.filter(
@@ -87,6 +93,8 @@ export default function HomepageClient() {
         cards={visibleWorkCards}
         onActivate={setActiveSlug}
       />
+
+      <TokscaleUsageSection data={tokscaleSummary} />
 
       <section id="connect" className="ei-connect" aria-labelledby="connect-heading">
         <div className="ei-connect-callout">
