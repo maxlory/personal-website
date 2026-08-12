@@ -75,6 +75,7 @@
 .portfolio-detail-hero-copy h1 {
   max-width: 13ch;
   margin-top: 0.8rem;
+  white-space: pre-line;
   font-family: var(--font-display-serif), "Songti SC", Georgia, serif;
   font-size: clamp(3.3rem, 6.6vw, 7rem);
   font-weight: 500;

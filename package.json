@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:red": "playwright test tests/project-index.spec.ts --project=chromium",
+    "test:red:finance-skills": "playwright test tests/finance-skills-atlas.spec.ts --project=chromium",
+    "test:red:living-ledger": "playwright test tests/finance-living-ledger.spec.ts --project=chromium",
+    "test:red:develop-flow": "playwright test tests/develop-flow.spec.ts --project=chromium",
+    "test:red:develop-recovery-case": "playwright test tests/develop-recovery-case.spec.ts --project=chromium"
   },
   "dependencies": {
     "@octokit/rest": "^22.0.1",
@@ -18,6 +23,7 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
