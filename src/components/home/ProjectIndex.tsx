@@ -1,7 +1,9 @@
 "use client";
 
 import type { LandingWorkCard } from "@/content/home";
+import { AnimatedLetterReveal } from "./AnimatedLetterReveal";
 import { ProjectIndexCard } from "./ProjectIndexCard";
+import { WordsPullUp } from "./WordsPullUp";
 
 export function ProjectIndex({
   headingNote,
@@ -17,14 +19,19 @@ export function ProjectIndex({
   return (
     <section id="work" className="ei-work" aria-labelledby="work-heading">
       <header className="ei-work-heading">
-        <p className="ei-kicker">{headingNote}</p>
+        <AnimatedLetterReveal className="ei-section-note" text={headingNote} />
         <h2 id="work-heading" className="ei-block-title">
-          {heading}
+          <WordsPullUp text={heading} />
         </h2>
       </header>
       <ul className="ei-project-grid" role="list">
-        {cards.map((card) => (
-          <ProjectIndexCard key={card.slug} card={card} onActivate={onActivate} />
+        {cards.map((card, index) => (
+          <ProjectIndexCard
+            key={card.slug}
+            card={card}
+            index={index}
+            onActivate={onActivate}
+          />
         ))}
       </ul>
     </section>

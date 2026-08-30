@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
 import type {
   LandingDevelopCover,
   LandingFinanceCover,
   LandingWorkCard,
 } from "@/content/home";
+import { useHydrated } from "./useHydrated";
 
 function Cover({
   cover,
@@ -149,13 +152,34 @@ function Cover({
 
 export function ProjectIndexCard({
   card,
+  index,
   onActivate,
 }: {
   card: LandingWorkCard;
+  index: number;
   onActivate: (slug: string | null) => void;
 }) {
-  return (
-    <li className={`ei-project-cell placement-${card.role}`}>
+  const cardRef = useRef<HTMLLIElement>(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-80px 0px" });
+  const reducedMotion = Boolean(useReducedMotion());
+  const staticMotion = useHydrated() && reducedMotion;
+  const isVisible = isInView || staticMotion;
+  const animationProps = staticMotion
+    ? {}
+    : {
+        initial: { opacity: 0, scale: 0.95, y: 24 },
+        animate: isVisible
+          ? { opacity: 1, scale: 1, y: 0 }
+          : { opacity: 0, scale: 0.95, y: 24 },
+        transition: {
+          duration: 0.68,
+          delay: index * 0.15,
+          ease: [0.22, 1, 0.36, 1] as const,
+        },
+      };
+
+  const cardClassName = `ei-project-cell placement-${card.role} ${isVisible ? "is-visible" : ""}`;
+  const cardContent = (
       <Link
         href={card.href}
         data-project-role={card.role}
@@ -166,6 +190,9 @@ export function ProjectIndexCard({
         onFocus={() => onActivate(card.slug)}
         onBlur={() => onActivate(null)}
       >
+        <span className="ei-project-index" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
+        </span>
         <div className="ei-project-cover" aria-hidden="true">
           <Cover cover={card.cover} coverData={card.coverData} />
         </div>
@@ -178,6 +205,19 @@ export function ProjectIndexCard({
           ↗
         </span>
       </Link>
-    </li>
+  );
+
+  if (staticMotion) {
+    return (
+      <li ref={cardRef} className={cardClassName}>
+        {cardContent}
+      </li>
+    );
+  }
+
+  return (
+    <motion.li ref={cardRef} className={cardClassName} {...animationProps}>
+      {cardContent}
+    </motion.li>
   );
 }

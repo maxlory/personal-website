@@ -1,12 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import type { LandingNavItem } from "@/content/home";
 import { landingPageContent } from "@/content/home";
 import type { TokscaleUsageData } from "@/lib/tokscale/data";
 import { ProjectIndex } from "./ProjectIndex";
 import { TokscaleUsageSection } from "./tokscale/TokscaleUsageSection";
+import { WordsPullUp } from "./WordsPullUp";
+import { useHydrated } from "./useHydrated";
+
+const HERO_VIDEO_SRC =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4";
 
 function HomeNav({ items }: { items: readonly LandingNavItem[] }) {
   return (
@@ -39,6 +45,8 @@ export default function HomepageClient({
   tokscaleSummary: TokscaleUsageData | null;
 }) {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
+  const shouldReduceMotion = Boolean(useReducedMotion());
+  const canAnimate = useHydrated() && !shouldReduceMotion;
   const { hero, nav, work, connect } = landingPageContent;
   const visibleWorkCards = work.cards.filter(
     (card) => !("isDraft" in card && card.isDraft),
@@ -47,21 +55,93 @@ export default function HomepageClient({
     (link) => !("isDraft" in link && link.isDraft),
   );
   const identity = hero.note.split("\n")[0];
+  const titleLines = hero.title.split(/\s+/).filter(Boolean);
+  const heroMotionState = canAnimate ? "hidden" : false;
+  const heroRevealVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delayChildren: 0.12,
+        staggerChildren: 0.07,
+      },
+    },
+  };
+  const heroItemVariants = {
+    hidden: { opacity: 0, transform: "translateY(18px)" },
+    visible: {
+      opacity: 1,
+      transform: "translateY(0)",
+      transition: {
+        duration: 0.58,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
 
   return (
     <main className="ei-home">
       <HomeNav items={nav} />
 
-      <section id="home" className="ei-hero" aria-labelledby="home-heading">
+      <motion.section
+        id="home"
+        className="ei-hero"
+        aria-labelledby="home-heading"
+        initial={heroMotionState}
+        animate="visible"
+        variants={heroRevealVariants}
+      >
+        <div className="ei-hero-media" aria-hidden="true">
+          {canAnimate ? (
+            <video
+              className="ei-hero-video"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster="/covers/ai-workflow-character.png"
+              src={HERO_VIDEO_SRC}
+            />
+          ) : null}
+          <div className="ei-hero-noise" />
+          <div className="ei-hero-gradient" />
+        </div>
         <div className="ei-hero-copy">
-          <p className="ei-kicker">{hero.eyebrow}</p>
-          <h1 id="home-heading" className="ei-hero-title">
-            {hero.title}
-          </h1>
-          <p className="ei-identity">{identity}</p>
+          <motion.p className="ei-kicker" variants={heroItemVariants}>
+            {hero.eyebrow}
+          </motion.p>
+          <motion.h1
+            id="home-heading"
+            className="ei-hero-title"
+            aria-label={hero.title}
+            variants={heroItemVariants}
+          >
+            {titleLines.map((line, index) => (
+              <span key={line} className="ei-hero-title-line">
+                <WordsPullUp
+                  text={line}
+                  className="ei-hero-wordmark"
+                  showAsterisk={index === titleLines.length - 1}
+                />
+              </span>
+            ))}
+          </motion.h1>
+          <motion.p className="ei-identity" variants={heroItemVariants}>
+            {identity}
+          </motion.p>
+          <motion.a className="ei-hero-cta" href="#work" variants={heroItemVariants}>
+            <span>View the work</span>
+            <span className="ei-hero-cta-icon" aria-hidden="true">
+              ↗
+            </span>
+          </motion.a>
         </div>
 
-        <nav className="ei-index-rail" aria-label="Work index">
+        <motion.nav
+          className="ei-index-rail"
+          aria-label="Work index"
+          variants={heroItemVariants}
+        >
           <ol>
             {visibleWorkCards.map((card, index) => (
               <li
@@ -84,8 +164,8 @@ export default function HomepageClient({
               </li>
             ))}
           </ol>
-        </nav>
-      </section>
+        </motion.nav>
+      </motion.section>
 
       <ProjectIndex
         headingNote={work.note}
@@ -99,7 +179,7 @@ export default function HomepageClient({
       <section id="connect" className="ei-connect" aria-labelledby="connect-heading">
         <div className="ei-connect-callout">
           <div>
-            <p className="ei-kicker">{connect.eyebrow}</p>
+            <p className="ei-section-note">{connect.eyebrow}</p>
             <h2 id="connect-heading">{connect.title}</h2>
             <p className="ei-connect-summary">{connect.summary}</p>
           </div>
